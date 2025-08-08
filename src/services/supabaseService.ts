@@ -23,8 +23,13 @@ export interface SignInData {
 // Authentication Service
 export const authService = {
   // Sign up with email and password
-  async signUp(data: SignUpData): Promise<{ user: User | null; error: AuthError | null }> {
-    const { data: { user }, error } = await supabase.auth.signUp({
+  async signUp(
+    data: SignUpData
+  ): Promise<{ user: User | null; error: AuthError | null }> {
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
       options: {
@@ -37,8 +42,13 @@ export const authService = {
   },
 
   // Sign in with email and password
-  async signIn(data: SignInData): Promise<{ user: User | null; error: AuthError | null }> {
-    const { data: { user }, error } = await supabase.auth.signInWithPassword({
+  async signIn(
+    data: SignInData
+  ): Promise<{ user: User | null; error: AuthError | null }> {
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.signInWithPassword({
       email: data.email,
       password: data.password,
     });
@@ -52,14 +62,26 @@ export const authService = {
   },
 
   // Get current session
-  async getSession(): Promise<{ session: Session | null; error: AuthError | null }> {
-    const { data: { session }, error } = await supabase.auth.getSession();
+  async getSession(): Promise<{
+    session: Session | null;
+    error: AuthError | null;
+  }> {
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
     return { session, error };
   },
 
   // Get current user
-  async getCurrentUser(): Promise<{ user: User | null; error: AuthError | null }> {
-    const { data: { user }, error } = await supabase.auth.getUser();
+  async getCurrentUser(): Promise<{
+    user: User | null;
+    error: AuthError | null;
+  }> {
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
     return { user, error };
   },
 
@@ -70,8 +92,14 @@ export const authService = {
   },
 
   // Update user profile
-  async updateProfile(updates: { name?: string; avatar_url?: string }): Promise<{ user: User | null; error: AuthError | null }> {
-    const { data: { user }, error } = await supabase.auth.updateUser({
+  async updateProfile(updates: {
+    name?: string;
+    avatar_url?: string;
+  }): Promise<{ user: User | null; error: AuthError | null }> {
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.updateUser({
       data: updates,
     });
     return { user, error };
@@ -81,23 +109,50 @@ export const authService = {
 // Data Service
 export const dataService = {
   // Generic CRUD operations
-  async get<T>(table: string, select = '*'): Promise<{ data: T[] | null; error: any }> {
+  async get<T>(
+    table: string,
+    select = '*'
+  ): Promise<{ data: T[] | null; error: any }> {
     const { data, error } = await supabase.from(table).select(select);
     return { data, error };
   },
 
-  async getById<T>(table: string, id: string, select = '*'): Promise<{ data: T | null; error: any }> {
-    const { data, error } = await supabase.from(table).select(select).eq('id', id).single();
+  async getById<T>(
+    table: string,
+    id: string,
+    select = '*'
+  ): Promise<{ data: T | null; error: any }> {
+    const { data, error } = await supabase
+      .from(table)
+      .select(select)
+      .eq('id', id)
+      .single();
     return { data, error };
   },
 
-  async insert<T>(table: string, data: Partial<T>): Promise<{ data: T | null; error: any }> {
-    const { data: result, error } = await supabase.from(table).insert(data).select().single();
+  async insert<T>(
+    table: string,
+    data: Partial<T>
+  ): Promise<{ data: T | null; error: any }> {
+    const { data: result, error } = await supabase
+      .from(table)
+      .insert(data)
+      .select()
+      .single();
     return { data: result, error };
   },
 
-  async update<T>(table: string, id: string, data: Partial<T>): Promise<{ data: T | null; error: any }> {
-    const { data: result, error } = await supabase.from(table).update(data).eq('id', id).select().single();
+  async update<T>(
+    table: string,
+    id: string,
+    data: Partial<T>
+  ): Promise<{ data: T | null; error: any }> {
+    const { data: result, error } = await supabase
+      .from(table)
+      .update(data)
+      .eq('id', id)
+      .select()
+      .single();
     return { data: result, error };
   },
 
@@ -127,7 +182,9 @@ export const storageService = {
     path: string,
     file: File
   ): Promise<{ data: any; error: any }> {
-    const { data, error } = await supabase.storage.from(bucket).upload(path, file);
+    const { data, error } = await supabase.storage
+      .from(bucket)
+      .upload(path, file);
     return { data, error };
   },
 
@@ -144,7 +201,10 @@ export const storageService = {
   },
 
   // List files in bucket
-  async listFiles(bucket: string, path = ''): Promise<{ data: any; error: any }> {
+  async listFiles(
+    bucket: string,
+    path = ''
+  ): Promise<{ data: any; error: any }> {
     const { data, error } = await supabase.storage.from(bucket).list(path);
     return { data, error };
   },
@@ -181,4 +241,4 @@ export const supabaseUtils = {
       avatar_url: user.user_metadata?.avatar_url,
     };
   },
-}; 
+};

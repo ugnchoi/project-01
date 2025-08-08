@@ -1,9 +1,19 @@
 import React from 'react';
-import { Button as ShadcnButton, ButtonProps as ShadcnButtonProps } from '@/components/ui/button';
+import {
+  Button as ShadcnButton,
+  ButtonProps as ShadcnButtonProps,
+} from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps extends Omit<ShadcnButtonProps, 'variant'> {
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link' | 'primary';
+  variant?:
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'link'
+    | 'primary';
   size?: 'default' | 'sm' | 'lg' | 'icon';
   children: React.ReactNode;
   onClick?: () => void;
@@ -65,4 +75,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button; 
+export default Button;

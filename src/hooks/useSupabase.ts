@@ -15,12 +15,19 @@ interface UseSupabaseResult<T> {
   loading: boolean;
   error: PostgrestError | null;
   refetch: () => Promise<void>;
-  insert: (data: Partial<T>) => Promise<{ data: any; error: PostgrestError | null }>;
-  update: (id: string, data: Partial<T>) => Promise<{ data: any; error: PostgrestError | null }>;
+  insert: (
+    data: Partial<T>
+  ) => Promise<{ data: any; error: PostgrestError | null }>;
+  update: (
+    id: string,
+    data: Partial<T>
+  ) => Promise<{ data: any; error: PostgrestError | null }>;
   delete: (id: string) => Promise<{ data: any; error: PostgrestError | null }>;
 }
 
-export const useSupabase = <T>(options: UseSupabaseOptions): UseSupabaseResult<T> => {
+export const useSupabase = <T>(
+  options: UseSupabaseOptions
+): UseSupabaseResult<T> => {
   const [data, setData] = useState<T[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<PostgrestError | null>(null);
@@ -136,4 +143,4 @@ export const useSupabase = <T>(options: UseSupabaseOptions): UseSupabaseResult<T
     update,
     delete: deleteRecord,
   };
-}; 
+};

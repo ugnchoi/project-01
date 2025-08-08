@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import type { User, Session } from '@supabase/supabase-js';
+import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
-import { authService } from '../services/supabaseService';
-import type { AuthUser } from '../services/supabaseService';
+import { authService, AuthUser } from '../services/supabaseService';
 
 interface AuthContextType {
   user: User | null;
@@ -10,9 +9,16 @@ interface AuthContextType {
   session: Session | null;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
-  signUp: (email: string, password: string, name?: string) => Promise<{ error: any }>;
+  signUp: (
+    email: string,
+    password: string,
+    name?: string
+  ) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
-  updateProfile: (updates: { name?: string; avatar_url?: string }) => Promise<{ error: any }>;
+  updateProfile: (updates: {
+    name?: string;
+    avatar_url?: string;
+  }) => Promise<{ error: any }>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -41,7 +47,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const { session: initialSession } = await authService.getSession();
       setSession(initialSession);
       setUser(initialSession?.user ?? null);
-      
+
       if (initialSession?.user) {
         setAuthUser({
           id: initialSession.user.id,
@@ -50,32 +56,32 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           avatar_url: initialSession.user.user_metadata?.avatar_url,
         });
       }
-      
+
       setLoading(false);
     };
 
     getInitialSession();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        
-        if (session?.user) {
-          setAuthUser({
-            id: session.user.id,
-            email: session.user.email || '',
-            name: session.user.user_metadata?.name,
-            avatar_url: session.user.user_metadata?.avatar_url,
-          });
-        } else {
-          setAuthUser(null);
-        }
-        
-        setLoading(false);
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+
+      if (session?.user) {
+        setAuthUser({
+          id: session.user.id,
+          email: session.user.email || '',
+          name: session.user.user_metadata?.name,
+          avatar_url: session.user.user_metadata?.avatar_url,
+        });
+      } else {
+        setAuthUser(null);
       }
-    );
+
+      setLoading(false);
+    });
 
     return () => subscription.unsubscribe();
   }, []);
@@ -94,7 +100,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     await authService.signOut();
   };
 
-  const updateProfile = async (updates: { name?: string; avatar_url?: string }) => {
+  const updateProfile = async (updates: {
+    name?: string;
+    avatar_url?: string;
+  }) => {
     const { error } = await authService.updateProfile(updates);
     return { error };
   };
@@ -110,9 +119,5 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     updateProfile,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
-}; 
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
