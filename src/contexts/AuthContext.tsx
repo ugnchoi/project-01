@@ -1,24 +1,34 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
+import type {
+  User,
+  Session,
+  AuthError,
+  PostgrestError,
+} from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
-import { authService, AuthUser } from '../services/supabaseService';
+import { authService } from '../services/supabaseService';
+import type { AuthUser } from '../services/supabaseService';
 
 interface AuthContextType {
   user: User | null;
   authUser: AuthUser | null;
   session: Session | null;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<{ error: any }>;
+  signIn: (
+    email: string,
+    password: string
+  ) => Promise<{ error: AuthError | PostgrestError | null }>;
   signUp: (
     email: string,
     password: string,
     name?: string
-  ) => Promise<{ error: any }>;
+  ) => Promise<{ error: AuthError | PostgrestError | null }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: {
     name?: string;
     avatar_url?: string;
-  }) => Promise<{ error: any }>;
+  }) => Promise<{ error: AuthError | PostgrestError | null }>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -65,7 +75,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
 
@@ -86,24 +96,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signIn = async (email: string, password: string) => {
+  const signIn: AuthContextType['signIn'] = async (email, password) => {
     const { error } = await authService.signIn({ email, password });
     return { error };
   };
 
-  const signUp = async (email: string, password: string, name?: string) => {
+  const signUp: AuthContextType['signUp'] = async (email, password, name) => {
     const { error } = await authService.signUp({ email, password, name });
     return { error };
   };
 
-  const signOut = async () => {
+  const signOut: AuthContextType['signOut'] = async () => {
     await authService.signOut();
   };
 
-  const updateProfile = async (updates: {
-    name?: string;
-    avatar_url?: string;
-  }) => {
+  const updateProfile: AuthContextType['updateProfile'] = async updates => {
     const { error } = await authService.updateProfile(updates);
     return { error };
   };

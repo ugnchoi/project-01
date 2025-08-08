@@ -1,19 +1,19 @@
 import React from 'react';
-import {
-  Button as ShadcnButton,
-  ButtonProps as ShadcnButtonProps,
-} from '@/components/ui/button';
+import { Button as ShadcnButton } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-interface ButtonProps extends Omit<ShadcnButtonProps, 'variant'> {
-  variant?:
-    | 'default'
-    | 'destructive'
-    | 'outline'
-    | 'secondary'
-    | 'ghost'
-    | 'link'
-    | 'primary';
+/** Variants supported by the underlying shadcn/ui Button */
+type ShadcnVariant =
+  | 'default'
+  | 'destructive'
+  | 'outline'
+  | 'secondary'
+  | 'ghost'
+  | 'link';
+
+interface ButtonProps {
+  /** Adds our custom "primary" alias while preserving shadcn variants */
+  variant?: ShadcnVariant | 'primary';
   size?: 'default' | 'sm' | 'lg' | 'icon';
   children: React.ReactNode;
   onClick?: () => void;
@@ -32,22 +32,12 @@ const Button: React.FC<ButtonProps> = ({
   type = 'button',
   ...props
 }) => {
-  // Map our custom variant to Shadcn variants
-  const getVariant = (variant: string): ShadcnButtonProps['variant'] => {
-    switch (variant) {
-      case 'primary':
-        return 'default';
-      case 'secondary':
-        return 'secondary';
-      default:
-        return variant as ShadcnButtonProps['variant'];
-    }
-  };
+  /** Map our custom variant to the matching shadcn variant */
+  const mapVariant = (v: NonNullable<ButtonProps['variant']>): ShadcnVariant =>
+    v === 'primary' ? 'default' : (v as ShadcnVariant);
 
   const handleClick = () => {
-    if (!disabled && onClick) {
-      onClick();
-    }
+    if (!disabled && onClick) onClick();
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -60,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <ShadcnButton
       type={type}
-      variant={getVariant(variant)}
+      variant={mapVariant(variant)}
       size={size}
       onClick={handleClick}
       onKeyDown={handleKeyDown}

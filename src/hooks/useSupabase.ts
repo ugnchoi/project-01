@@ -5,24 +5,25 @@ import type { PostgrestError } from '@supabase/supabase-js';
 interface UseSupabaseOptions {
   table: string;
   select?: string;
-  filters?: Record<string, any>;
+  filters?: Record<string, unknown>;
   orderBy?: { column: string; ascending?: boolean };
   limit?: number;
 }
+
+// Generic result shape for insert / update / delete
+type SupabaseMutationResult<T> = {
+  data: T[] | null;
+  error: PostgrestError | null;
+};
 
 interface UseSupabaseResult<T> {
   data: T[] | null;
   loading: boolean;
   error: PostgrestError | null;
   refetch: () => Promise<void>;
-  insert: (
-    data: Partial<T>
-  ) => Promise<{ data: any; error: PostgrestError | null }>;
-  update: (
-    id: string,
-    data: Partial<T>
-  ) => Promise<{ data: any; error: PostgrestError | null }>;
-  delete: (id: string) => Promise<{ data: any; error: PostgrestError | null }>;
+  insert: (data: Partial<T>) => Promise<SupabaseMutationResult<T>>;
+  update: (id: string, data: Partial<T>) => Promise<SupabaseMutationResult<T>>;
+  delete: (id: string) => Promise<SupabaseMutationResult<T>>;
 }
 
 export const useSupabase = <T>(
@@ -63,7 +64,7 @@ export const useSupabase = <T>(
       if (fetchError) {
         setError(fetchError);
       } else {
-        setData(result);
+        setData(result as unknown as T[] | null);
       }
     } catch (err) {
       setError(err as PostgrestError);
@@ -72,7 +73,7 @@ export const useSupabase = <T>(
     }
   };
 
-  const insert = async (newData: Partial<T>) => {
+  const insert: UseSupabaseResult<T>['insert'] = async newData => {
     try {
       const { data: result, error: insertError } = await supabase
         .from(options.table)
@@ -80,18 +81,17 @@ export const useSupabase = <T>(
         .select();
 
       if (insertError) {
-        return { data: null, error: insertError };
+        return { data: result as T[] | null, error: insertError };
       }
 
-      // Refresh data after insert
-      await fetchData();
-      return { data: result, error: null };
+      await fetchData(); // refresh
+      return { data: result as T[] | null, error: null };
     } catch (err) {
       return { data: null, error: err as PostgrestError };
     }
   };
 
-  const update = async (id: string, updateData: Partial<T>) => {
+  const update: UseSupabaseResult<T>['update'] = async (id, updateData) => {
     try {
       const { data: result, error: updateError } = await supabase
         .from(options.table)
@@ -100,18 +100,17 @@ export const useSupabase = <T>(
         .select();
 
       if (updateError) {
-        return { data: null, error: updateError };
+        return { data: result as T[] | null, error: updateError };
       }
 
-      // Refresh data after update
       await fetchData();
-      return { data: result, error: null };
+      return { data: result as T[] | null, error: null };
     } catch (err) {
       return { data: null, error: err as PostgrestError };
     }
   };
 
-  const deleteRecord = async (id: string) => {
+  const deleteRecord: UseSupabaseResult<T>['delete'] = async id => {
     try {
       const { data: result, error: deleteError } = await supabase
         .from(options.table)
@@ -119,12 +118,11 @@ export const useSupabase = <T>(
         .eq('id', id);
 
       if (deleteError) {
-        return { data: null, error: deleteError };
+        return { data: result as T[] | null, error: deleteError };
       }
 
-      // Refresh data after delete
       await fetchData();
-      return { data: result, error: null };
+      return { data: result as T[] | null, error: null };
     } catch (err) {
       return { data: null, error: err as PostgrestError };
     }
