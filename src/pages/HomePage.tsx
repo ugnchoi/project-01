@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <Card title="React + TypeScript" className="text-center">
             <div className="space-y-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto">
                 <svg
                   className="w-6 h-6 text-blue-600"
                   fill="none"
@@ -129,7 +129,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-600 rounded-2xl p-8 md:p-12 text-center text-white">
+      <section className="bg-background rounded-2xl p-8 md:p-12 text-center text-white">
         <h2 className="text-3xl font-bold mb-4">Ready to get started?</h2>
         <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
           Join thousands of developers building amazing web applications with

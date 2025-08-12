@@ -55,7 +55,7 @@ const ShadcnLayout: React.FC<ShadcnLayoutProps> = ({ children }) => {
                 Project 01
               </span>
             </Link>
-            <nav className="flex items-center space-x-6 text-sm font-medium">
+            <nav className="flex items-center space-x-6 text-sm font-[500]">
               {currentNavItems.map((item) => (
                 <Link
                   key={item.href}
@@ -88,7 +88,7 @@ const ShadcnLayout: React.FC<ShadcnLayoutProps> = ({ children }) => {
                     key={item.href}
                     to={item.href}
                     className={cn(
-                      "text-sm font-medium transition-colors hover:text-foreground/80",
+                      "text-sm font-[500] transition-colors hover:text-foreground/80",
                       isActive(item.href) ? "text-foreground" : "text-foreground/60"
                     )}
                     onClick={() => setMobileMenuOpen(false)}
@@ -107,7 +107,7 @@ const ShadcnLayout: React.FC<ShadcnLayoutProps> = ({ children }) => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                      <span className="text-sm font-medium text-primary">
+                      <span className="text-sm font-[500] text-primary">
                         {authUser?.name?.charAt(0) || authUser?.email?.charAt(0) || 'U'}
                       </span>
                     </div>
@@ -116,7 +116,7 @@ const ShadcnLayout: React.FC<ShadcnLayoutProps> = ({ children }) => {
                 <DropdownMenuContent className="w-56" align="end" forceMount>
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">
+                      <p className="text-sm font-[500] leading-none">
                         {authUser?.name || 'User'}
                       </p>
                       <p className="text-xs leading-none text-muted-foreground">

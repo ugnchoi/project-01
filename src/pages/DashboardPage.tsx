@@ -27,8 +27,8 @@ const DashboardPage: React.FC = () => {
       <Card title="Your Profile" className="max-w-2xl mx-auto">
         <div className="space-y-4">
           <div className="flex items-center space-x-4">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-              <span className="text-blue-600 text-xl font-bold">
+            <div className="w-16 h-16 bg-primary-10 rounded-full flex items-center justify-center">
+              <span className="text-primary-60 text-xl font-bold">
                 {authUser?.name?.charAt(0) || authUser?.email?.charAt(0) || 'U'}
               </span>
             </div>
@@ -58,9 +58,9 @@ const DashboardPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card title="View Profile" className="text-center">
             <div className="space-y-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 bg-primary-10 rounded-lg flex items-center justify-center mx-auto">
                 <svg
-                  className="w-6 h-6 text-blue-600"
+                  className="w-6 h-6 text-primary-60"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

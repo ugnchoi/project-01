@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,7 +34,9 @@ const ContactPage: React.FC = () => {
     message: string;
   }>({ type: null, message: '' });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -74,9 +82,7 @@ const ContactPage: React.FC = () => {
     <div className="space-y-8">
       {/* Hero Section */}
       <section className="text-center py-12">
-        <h1 className="text-4xl font-bold text-foreground mb-4">
-          Contact Us
-        </h1>
+        <h1 className="text-4xl font-bold text-foreground mb-4">Contact Us</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Have a question or want to work together? We'd love to hear from you.
         </p>
@@ -88,12 +94,18 @@ const ContactPage: React.FC = () => {
           <CardHeader>
             <CardTitle>Send us a message</CardTitle>
             <CardDescription>
-              Fill out the form below and we'll get back to you as soon as possible.
+              Fill out the form below and we'll get back to you as soon as
+              possible.
             </CardDescription>
           </CardHeader>
           <CardContent>
             {submitStatus.type && (
-              <Alert variant={submitStatus.type === 'success' ? 'default' : 'destructive'} className="mb-6">
+              <Alert
+                variant={
+                  submitStatus.type === 'success' ? 'default' : 'destructive'
+                }
+                className="mb-6"
+              >
                 {submitStatus.type === 'success' ? (
                   <CheckCircle className="h-4 w-4" />
                 ) : (
@@ -102,7 +114,7 @@ const ContactPage: React.FC = () => {
                 <AlertDescription>{submitStatus.message}</AlertDescription>
               </Alert>
             )}
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Name *</Label>
@@ -176,11 +188,11 @@ const ContactPage: React.FC = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <div className="w-6 h-6 bg-primary-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                   <Mail className="w-4 h-4 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-foreground">Email</h3>
+                  <h3 className="font-[500] text-foreground">Email</h3>
                   <p className="text-muted-foreground">hello@project01.com</p>
                 </div>
               </div>
@@ -190,7 +202,7 @@ const ContactPage: React.FC = () => {
                   <Phone className="w-4 h-4 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-foreground">Phone</h3>
+                  <h3 className="font-[500] text-foreground">Phone</h3>
                   <p className="text-muted-foreground">+1 (555) 123-4567</p>
                 </div>
               </div>
@@ -200,7 +212,7 @@ const ContactPage: React.FC = () => {
                   <MapPin className="w-4 h-4 text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-foreground">Location</h3>
+                  <h3 className="font-[500] text-foreground">Location</h3>
                   <p className="text-muted-foreground">San Francisco, CA</p>
                 </div>
               </div>
@@ -215,15 +227,15 @@ const ContactPage: React.FC = () => {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Monday - Friday</span>
-                  <span className="font-medium">9:00 AM - 6:00 PM</span>
+                  <span className="font-[500]">9:00 AM - 6:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Saturday</span>
-                  <span className="font-medium">10:00 AM - 4:00 PM</span>
+                  <span className="font-[500]">10:00 AM - 4:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Sunday</span>
-                  <span className="font-medium">Closed</span>
+                  <span className="font-[500]">Closed</span>
                 </div>
               </div>
             </CardContent>
@@ -234,4 +246,4 @@ const ContactPage: React.FC = () => {
   );
 };
 
-export default ContactPage; 
+export default ContactPage;

@@ -53,17 +53,20 @@ src/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd project-01
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -84,16 +87,15 @@ src/
 This project uses Tailwind CSS for styling. Here are some guidelines:
 
 ### Component Styling
+
 - Use Tailwind utility classes for styling
 - Create reusable component classes in `src/index.css` using `@layer components`
 - Follow mobile-first responsive design principles
 
 ### Custom Classes
+
 ```css
 @layer components {
-  .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
-  }
 }
 ```
 
@@ -123,6 +125,7 @@ This project uses React Router DOM for client-side routing. The routing structur
 3. Update the navigation in `src/layouts/MainLayout.tsx`
 
 ### Example Component Structure
+
 ```typescript
 import React from 'react';
 
@@ -146,13 +149,16 @@ export default Component;
 ## 🔧 Development Tools
 
 ### VS Code Extensions
+
 The project includes recommended VS Code extensions:
+
 - Prettier - Code formatter
 - ESLint - Linting
 - Tailwind CSS IntelliSense - Tailwind class suggestions
 - TypeScript support
 
 ### Configuration Files
+
 - `.prettierrc` - Code formatting rules
 - `.vscode/settings.json` - VS Code workspace settings
 - `tailwind.config.js` - Tailwind CSS configuration
@@ -161,6 +167,7 @@ The project includes recommended VS Code extensions:
 ## 📱 Responsive Design
 
 The application is built with a mobile-first approach:
+
 - Use responsive prefixes (`sm:`, `md:`, `lg:`, `xl:`)
 - Test on various screen sizes
 - Ensure touch-friendly interactions on mobile
@@ -176,12 +183,15 @@ The application is built with a mobile-first approach:
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
 1. Connect your GitHub repository to Vercel
 2. Vercel will automatically detect the Vite configuration
 3. Deploy with zero configuration
 
 ### Other Platforms
+
 The built application can be deployed to any static hosting service:
+
 - Netlify
 - GitHub Pages
 - AWS S3
@@ -202,6 +212,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🆘 Support
 
 If you encounter any issues or have questions:
+
 1. Check the [Issues](https://github.com/your-repo/issues) page
 2. Create a new issue with detailed information
 3. Include steps to reproduce the problem

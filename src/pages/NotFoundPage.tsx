@@ -11,7 +11,7 @@ const NotFoundPage: React.FC = () => {
           <div className="relative">
             <div className="text-9xl font-bold text-gray-200">404</div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center">
+              <div className="w-24 h-24 bg-background rounded-full flex items-center justify-center">
                 <svg
                   className="w-12 h-12 text-white"
                   fill="none"

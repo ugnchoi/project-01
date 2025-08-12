@@ -53,9 +53,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  className={`px-3 py-2 rounded-md text-sm font-[500] transition-colors duration-200 ${
                     isActive(item.href)
-                      ? 'text-blue-600 bg-blue-50'
+                      ? 'text-primary bg-primary/10'
                       : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                   tabIndex={0}
@@ -72,12 +72,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 <div className="relative">
                   <button
                     onClick={() => setShowUserMenu(!showUserMenu)}
-                    className="flex items-center space-x-2 text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-2"
+                    className="flex items-center space-x-2 text-sm font-[500] text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-2"
                     tabIndex={0}
                     aria-label="User menu"
                   >
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                      <span className="text-blue-600 font-medium">
+                    <div className="w-8 h-8 bg-primary-10 rounded-full flex items-center justify-center">
+                      <span className="text-primary-60 font-[500]">
                         {authUser?.name?.charAt(0) ||
                           authUser?.email?.charAt(0) ||
                           'U'}
@@ -104,7 +104,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   {showUserMenu && (
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
                       <div className="px-4 py-2 text-sm text-gray-700 border-b border-gray-100">
-                        <div className="font-medium">{authUser?.name}</div>
+                        <div className="font-[500]">{authUser?.name}</div>
                         <div className="text-gray-500">{authUser?.email}</div>
                       </div>
                       <Link

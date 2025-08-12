@@ -35,9 +35,9 @@ const AboutPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card title="React 18" className="text-center">
             <div className="space-y-3">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 bg-primary-10 rounded-lg flex items-center justify-center mx-auto">
                 <svg
-                  className="w-6 h-6 text-blue-600"
+                  className="w-6 h-6 text-primary-60"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -52,7 +52,7 @@ const AboutPage: React.FC = () => {
 
           <Card title="TypeScript" className="text-center">
             <div className="space-y-3">
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mx-auto">
                 <span className="text-white font-bold text-lg">TS</span>
               </div>
               <p className="text-gray-600 text-sm">
