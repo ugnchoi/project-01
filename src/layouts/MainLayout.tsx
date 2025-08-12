@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import Button from '../components/Button';
+import { Button } from '@/components/ui/button';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -40,13 +40,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Link to="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-200">
+              <Link
+                to="/"
+                className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-200"
+              >
                 Project 01
               </Link>
             </div>
-            
+
             <nav className="hidden md:flex space-x-8">
-              {(user ? authenticatedNavItems : navItems).map((item) => (
+              {(user ? authenticatedNavItems : navItems).map(item => (
                 <Link
                   key={item.href}
                   to={item.href}
@@ -75,14 +78,26 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   >
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                       <span className="text-blue-600 font-medium">
-                        {authUser?.name?.charAt(0) || authUser?.email?.charAt(0) || 'U'}
+                        {authUser?.name?.charAt(0) ||
+                          authUser?.email?.charAt(0) ||
+                          'U'}
                       </span>
                     </div>
                     <span className="hidden sm:block">
                       {authUser?.name || authUser?.email}
                     </span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
                     </svg>
                   </button>
 
@@ -111,13 +126,13 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 </div>
               ) : (
                 <Link to="/auth">
-                  <Button variant="primary" size="sm">
+                  <Button variant="default" size="sm">
                     Sign In
                   </Button>
                 </Link>
               )}
             </div>
-            
+
             {/* Mobile menu button */}
             <div className="md:hidden">
               <button
@@ -126,8 +141,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 aria-label="Toggle mobile menu"
                 tabIndex={0}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
             </div>
@@ -154,4 +179,4 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   );
 };
 
-export default MainLayout; 
+export default MainLayout;

@@ -25,4 +25,8 @@ function Button({
   );
 }
 
-export { Button };
+// src/components/ui/button.tsx
+export { Button }; // ← keep the component export
+
+// eslint-disable-next-line react-refresh/only-export-components
+export { buttonVariants }; // ← make sure this line is present and spelled exactly

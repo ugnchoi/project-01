@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import Card from '../components/Card';
-import Button from '../components/Button';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const DashboardPage: React.FC = () => {
   const { authUser, signOut } = useAuth();
@@ -18,7 +18,8 @@ const DashboardPage: React.FC = () => {
           Welcome to Your Dashboard
         </h1>
         <p className="text-xl text-gray-600">
-          Hello, {authUser?.name || authUser?.email}! You're successfully signed in.
+          Hello, {authUser?.name || authUser?.email}! You're successfully signed
+          in.
         </p>
       </section>
 
@@ -38,10 +39,10 @@ const DashboardPage: React.FC = () => {
               <p className="text-gray-600">{authUser?.email}</p>
             </div>
           </div>
-          
+
           <div className="pt-4 border-t border-gray-200">
-            <Button 
-              variant="secondary" 
+            <Button
+              variant="secondary"
               onClick={handleSignOut}
               className="w-full"
             >
@@ -58,14 +59,24 @@ const DashboardPage: React.FC = () => {
           <Card title="View Profile" className="text-center">
             <div className="space-y-4">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                <svg
+                  className="w-6 h-6 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
                 </svg>
               </div>
               <p className="text-gray-600 text-sm">
                 Manage your account settings and profile information
               </p>
-              <Button variant="primary" size="sm" className="w-full">
+              <Button variant="default" size="sm" className="w-full">
                 Edit Profile
               </Button>
             </div>
@@ -74,14 +85,24 @@ const DashboardPage: React.FC = () => {
           <Card title="Messages" className="text-center">
             <div className="space-y-4">
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                <svg
+                  className="w-6 h-6 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
                 </svg>
               </div>
               <p className="text-gray-600 text-sm">
                 View and manage your messages and notifications
               </p>
-              <Button variant="primary" size="sm" className="w-full">
+              <Button variant="default" size="sm" className="w-full">
                 View Messages
               </Button>
             </div>
@@ -90,15 +111,30 @@ const DashboardPage: React.FC = () => {
           <Card title="Settings" className="text-center">
             <div className="space-y-4">
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <svg
+                  className="w-6 h-6 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
                 </svg>
               </div>
               <p className="text-gray-600 text-sm">
                 Configure your account preferences and security settings
               </p>
-              <Button variant="primary" size="sm" className="w-full">
+              <Button variant="default" size="sm" className="w-full">
                 Open Settings
               </Button>
             </div>
@@ -109,4 +145,4 @@ const DashboardPage: React.FC = () => {
   );
 };
 
-export default DashboardPage; 
+export default DashboardPage;
