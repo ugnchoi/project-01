@@ -28,7 +28,7 @@ const HomePage: React.FC = () => {
               variant="default"
               size="lg"
               onClick={handleGetStarted}
-              className="w-full sm:w-auto"
+              className="w-hug sm:w-auto"
             >
               Get Started
             </Button>
@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
               variant="secondary"
               size="lg"
               onClick={handleLearnMore}
-              className="w-full sm:w-auto"
+              className="w-hug sm:w-auto"
             >
               Learn More
             </Button>
